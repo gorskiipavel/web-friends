@@ -48,7 +48,11 @@ function App() {
   const search = () => {
     if (!totalResults) {
       return (
-        <h1 className='m-3'>You searched for: <span className="badge badge-secondary"> nothing found</span></h1>
+        <h1 className='d-flex justify-content-center col-10'>You searched for: {totalResults} not found</h1>
+      )
+    } else {
+      return (
+        <h1 className='d-flex justify-content-center col-10'>You searched for: {totalResults} results found</h1>
       )
     }
   };
@@ -74,20 +78,22 @@ function App() {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <form className="d-flex justify-content-around w-100 m-3"  onSubmit={submitHandler}>
-              <input className="w-100 m-1 form-control" type="text" placeholder="Search" aria-label="Search"
-                     value={searchQuery} onChange={searchHandler}/>
-            <button className="m-1 btn btn-outline-info"  type="submit">Search</button>
+          <form className="d-flex justify-content-around w-100 m-3" onSubmit={submitHandler}>
+            <input className="w-100 m-1 form-control" type="text" placeholder="Search" aria-label="Search"
+                   value={searchQuery} onChange={searchHandler}/>
+            <button className="m-1 btn btn-outline-info" type="submit">Search</button>
           </form>
         </div>
         <ul className="navbar-nav mr-auto">
           <li className="nav-item dropdown">
-            <a className="nav-link dropdown-toggle ml-1 text-info" id="navbarDropdown" role="button" data-toggle="dropdown"
+            <a className="nav-link dropdown-toggle ml-1 text-info" id="navbarDropdown" role="button"
+               data-toggle="dropdown"
                aria-haspopup="true" aria-expanded="false">
               Pavel Horski
             </a>
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a className="dropdown-item" href="https://docs.google.com/document/d/1lYF2n7TRc160ikLFaUR4b-RhtZHnmdTR4PSECxley7Q/edit?usp=sharing">Resume
+              <a className="dropdown-item"
+                 href="https://docs.google.com/document/d/1lYF2n7TRc160ikLFaUR4b-RhtZHnmdTR4PSECxley7Q/edit?usp=sharing">Resume
                 <img
                   src="https://img.icons8.com/bubbles/2x/resume.png"
                   width='60px' height='60px' alt=""/>
@@ -109,11 +115,9 @@ function App() {
           </li>
         </ul>
       </nav>
-      {cardsToShow && cardsToShow.length ? search() : <h1 className='d-flex justify-content-center col-10'>You searched for:
-        <span className="badge badge-secondary">
-        {totalResults}
-      </span> results found
-      </h1>}
+
+     {search()}
+
       <div className="row" style={style.div}>
         {cardsToShow && cardsToShow.length ? (
           cardsToShow.map((card, id) =>
