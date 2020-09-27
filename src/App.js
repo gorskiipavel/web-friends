@@ -11,39 +11,12 @@ function App() {
   const [loading, setLoading] = useState(false);
 
   const style = {
-    navBar: {
-      position: 'absolute',
+    loader: {
       width: '100%',
-      top: '0',
-      right: '0',
       display: 'flex',
-      justifyContent: 'center',
-
+      justifyContent: 'center'
     },
-    nav: {
-      display: 'block'
-    },
-    navbarCollapse: {
-      flexGrow: 'unset'
-    },
-    container: {
-      paddingTop: '100px',
-      textAlign: 'center'
-    },
-    input: {
-      width: '20rem'
-    },
-    button: {
-      width: '5rem'
-    },
-    a: {
-      color: '#fbdeaa'
-    },
-    div: {
-      border: 'none'
-    }
   };
-
 
   async function fetchData(searchQuery, page) {
     setLoading(true);
@@ -60,7 +33,6 @@ function App() {
     if (event) {
       setSearchQuery(event.target.value);
     }
-
   };
 
   const submitHandler = (event) => {
@@ -78,11 +50,6 @@ function App() {
       return (
         <h1 className='m-3'>You searched for: <span className="badge badge-secondary"> nothing found</span></h1>
       )
-    } else {
-      return (
-        <h1 className='m-3'>You searched for: <span
-          className="badge badge-secondary">{totalResults}</span> results found</h1>
-      )
     }
   };
 
@@ -92,71 +59,79 @@ function App() {
 
 
   return (
-    <div className="container" style={style.container}>
-      <div className="d-flex navbar navbar-expand-lg bg-light" style={style.navBar}>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light" style={style.nav}>
-          <a className="navbar-brand" href="https://www.linkedin.com/company/web-friedns/">
-            <img
-              src="https://media-exp1.licdn.com/dms/image/C4D0BAQF_BaxcSbfO9Q/company-logo_200_200/0?e=2159024400&v=beta&t=B1bJCP1NGx-jRxHJUNwj5vWRHvvHUW3O9DoyY9c1xIA"
-              width="60" height="60"
-              className="d-inline-block align-content-center mr-3" alt="" loading="lazy"/>
-            Movie Catalog
-          </a>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"/>
-          </button>
+    <div className="container">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <a className="navbar-brand" href="https://www.linkedin.com/company/web-friedns/">
+          <img
+            src="https://media-exp1.licdn.com/dms/image/C4D0BAQF_BaxcSbfO9Q/company-logo_200_200/0?e=2159024400&v=beta&t=B1bJCP1NGx-jRxHJUNwj5vWRHvvHUW3O9DoyY9c1xIA"
+            width="60" height="60"
+            className="d-inline-block align-content-center mr-3" alt="" loading="lazy"/>
+        </a>
+        <a className="navbar-brand text-info" href="https://brymonsoft.com/">Movie Catalog</a>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"/>
+        </button>
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent"  style={style.navbarCollapse}>
-          <ul className="navbar-nav">
-            <li className='nav-item active'>
-              <form className="form-inline" onSubmit={submitHandler}>
-                <input
-                  className="form-control mx-auto"
-                  style={style.input}
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                  value={searchQuery}
-                  onChange={searchHandler}
-                />
-                <button
-                  className="btn btn-outline-success my-2 my-sm-0"
-                  type="submit"
-                  style={style.button}
-                >
-                  Search
-                </button>
-              </form>
-              <div className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle bg-info border-dark rounded" style={style.a}
-                   href="https://resume.io/r/87Qp7zhpt" data-toggle="dropdown">
-                  Pavel Horski
-                </a>
-              </div>
-            </li>
-          </ul>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <form className="d-flex justify-content-around w-100 m-3"  onSubmit={submitHandler}>
+              <input className="w-100 m-1 form-control" type="text" placeholder="Search" aria-label="Search"
+                     value={searchQuery} onChange={searchHandler}/>
+            <button className="m-1 btn btn-outline-info"  type="submit">Search</button>
+          </form>
         </div>
-        </nav>
-      </div>
-      {cardsToShow && cardsToShow.length ? search() : <h1 className='m-3'>You searched for: <span
-        className="badge badge-secondary">{totalResults}</span> results found</h1>}
+        <ul className="navbar-nav mr-auto">
+          <li className="nav-item dropdown">
+            <a className="nav-link dropdown-toggle ml-1 text-info" id="navbarDropdown" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+              Pavel Horski
+            </a>
+            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a className="dropdown-item" href="https://docs.google.com/document/d/1lYF2n7TRc160ikLFaUR4b-RhtZHnmdTR4PSECxley7Q/edit?usp=sharing">Resume
+                <img
+                  src="https://img.icons8.com/bubbles/2x/resume.png"
+                  width='60px' height='60px' alt=""/>
+              </a>
+              <a className="dropdown-item" href="https://www.linkedin.com/in/pavel-horski-9446251b0/">
+                LinkedIn
+                <img src="https://img.icons8.com/clouds/2x/linkedin.png" width='60px'
+                     height='60px' alt=""/>
+              </a>
+              <div className="dropdown-item disabled ">
+                gorskiipavel@gmail.com
+                <img src="https://img.icons8.com/clouds/2x/gmail.png" width='60px' height='60px' alt=""/>
+              </div>
+              <a className="dropdown-item disabled" href="#">
+                +375(44)795-30-71
+                <img src="https://img.icons8.com/clouds/2x/phone.png" width='60px' height='60px' alt=""/>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      {cardsToShow && cardsToShow.length ? search() : <h1 className='d-flex justify-content-center col-10'>You searched for:
+        <span className="badge badge-secondary">
+        {totalResults}
+      </span> results found
+      </h1>}
       <div className="row" style={style.div}>
         {cardsToShow && cardsToShow.length ? (
-          cardsToShow.map((card, id) => <Card card={card} key={id}/>)
+          cardsToShow.map((card, id) =>
+            <Card card={card} key={id}/>)
         ) : null
         }
-        {loading ? (<div className='col-10 d-flex justify-content-center align-items-center'>
-          <Loading type='spin' color='#A8BDAB'/>
-        </div>) : null}
+        {loading ? (<div style={style.loader}>
+            <Loading type='spin' color='#A8BDAB'/>
+          </div>)
+          : null}
       </div>
-      <div className='m-3'>
+      <div className='d-flex justify-content-center'>
         <Pagination activePage={activePage}
                     itemsCountPerPage={10}
                     totalItemsCount={totalResults}
-                    pageRangeDisplayed={10}
+                    pageRangeDisplayed={8}
                     onChange={paginationClickHandler}
-                    innerClass="pagination justify-content-center"
+                    innerClass="pagination"
                     itemClass='page-item'
                     linkClass="page-link"
                     prevPageText='Previous'
